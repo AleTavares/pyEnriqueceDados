@@ -11,25 +11,25 @@ Original file is located at
 
 Com a transformação digital e com soluções cada vez mais geridas online, contar com um banco de dados incompleto ou desatualizado pode provocar perdas e expor seu negócio a riscos. É aí que entra o Enriquecimento de Dados: esse recurso possibilita atualizar e encontrar informações rapidamente, gerando uma vantagem competitiva.
 
-Em nosso caso vamos encontar as coordenadas geográficas das cidades, pois no dataset que tratamos no artigo anterior (https://www.linkedin.com/pulse/consumindo-api-e-tratando-dados-com-python-alexandre-tavares/)
+Em nosso caso vamos encontrar as coordenadas geográficas das cidades, pois no dataset que tratamos no artigo anterior (https://www.linkedin.com/pulse/consumindo-api-e-tratando-dados-com-python-alexandre-tavares/)
 
-Com essas informações adicionais, nosso dataset fica mais completo. Assim, é possível plotar mapas com marcações de ocorrencias do CODIV-19.
+Com essas informações adicionais, nosso dataset fica mais completo. Assim, é possível plotar mapas com marcações de ocorrências do CODIV-19.
 
 Para esta tarefa utilizaremos algumas bibliotecas do Python, são elas:
 - **Pandas:**
 O pandas é uma biblioteca de análise e manipulação de dados de código aberto, rápida, poderosa, flexível e fácil de usar, construída sobre a linguagem Python .
 - **os:**
-O módulo os fornece dúzias de funções para interagir com o sistema operacional e a utilizaremos para gerar uma variavel de ambiente pra autenticarmos na API do GOOLGLE.
+O módulo os fornece dúzias de funções para interagir com o sistema operacional e a utilizaremos para gerar uma variável de ambiente pra autenticarmos na API do GOOLGLE.
 - **geocoder:**
-Converta endereços em coordenadas geográficas. A API de geocodificação do google suporta pesquisa difusa.
+Converta endereços em coordenadas geográficas. A API de geo codificação do Google suporta pesquisa difusa.
 
-Bom agora que já entendemos um pouco sobre enriqueciment de dados, sobre algumas bibliotecas do python e oque vamos fazer vamos colocara mão na massa.
+Bom agora que já entendemos um pouco sobre enriquecimento de dados, sobre algumas bibliotecas do python e oque vamos fazer vamos colocara mão na massa.
 
-Neste artigo iremos utiligar o Google Colab(https://colab.research.google.com/) pra executarmos o código.
+Neste artigo iremos utilizar o Google Colab(https://colab.research.google.com/) pra executarmos o código.
 
 **Instalar as Bibliotecas necessárias**
 
-Vamos precisar instalar as bibliotecas do python citado acima, caso estes não esteja instalado, execute a celula abaixo:
+Vamos precisar instalar as bibliotecas do python citado acima, caso estes não esteja instalado, execute a célula abaixo:
 """
 
 !pip install pandas
@@ -38,7 +38,7 @@ Vamos precisar instalar as bibliotecas do python citado acima, caso estes não e
 
 """**Importar as Bibliotecas**
 
-Agora precisamos importar as bibliotecas para que possamos utilizá las em nosso algoritimo.
+Agora precisamos importar as bibliotecas para que possamos utilizá las em nosso algorítimo.
 """
 
 import pandas as pd
@@ -51,10 +51,11 @@ Temos que iniciar uma variável de ambiente com a chave da API do google para qu
 Caso não saiba como gerar esta chave leia o artigo: https://www.linkedin.com/pulse/gerando-chave-de-acesso-do-google-alexandre-tavares
 """
 
-os.environ["GOOGLE_API_KEY"] = "INSERIR GOOGLE KEY"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyDZkOeeS2VXhoe09ybTIHTKKwuAHTd9b6k"
 
 """**Importa Biblioteca de geolocalização do google**
-Após gerara váriavel de ambiente com a chave da API devemos importar o módulo geocoder, devemos inportar ela sempre deois de gerar a váriavel pois o módulo utiliza a variavél para se autenticar.
+
+Após gerara variável de ambiente com a chave da API devemos importar o módulo geocoder, devemos importar ela sempre depois de gerar a variável, pois o módulo utiliza a variável para se autenticar.
 """
 
 import geocoder
@@ -64,7 +65,7 @@ import geocoder
 *Será preciso fazer upload do arquivo*
 
 para isso execute os passos abaixo:
-- clique no icone de uma pasta na lateral esquerda do colab:
+- clique no ícone de uma pasta na lateral esquerda do colab:
 
 ![alt text](http://www.portalatibaia.com.br/Artigos/colab01.png)
 
@@ -76,29 +77,27 @@ para isso execute os passos abaixo:
 
 ![alt text](http://www.portalatibaia.com.br/Artigos/colab03.png)
 
-Com isso já temos nosso arquivo importado para o colab e podemos seguer.
+Com isso já temos nosso arquivo importado para o colab e podemos seguir.
 
 **Importar arquivo**
 
-Devemos importar o arquivo para que possamos utilizalo em nosso algoritimo.
+Devemos importar o arquivo para que possamos utilizá-lo em nosso algorítimo.
 """
 
 dfCodiv19 = pd.read_csv('datasetCodiv19.csv',encoding ='utf-8', sep=';')
 
 """**Criar um DataFrame Vazio**
 
-Vamos criar um data frame com a estruturadecolunas que pretendemos ter ao final deste algoritimo.
+Vamos criar um data frame com a estrutura de colunas que pretendemos ter ao final deste algorítimo.
 """
 
 dfEnriquecido = pd.DataFrame(columns=['Estado', 'Cidade', 'Latitude', 'Longitude', 'casosConfirmados', 'Mortes', 'dtAtualizado'])
 
-dfEnriquecido
-
-"""**Enriquecer dados com as Coordenadas geograficas**
+"""**Enriquecer dados com as Coordenadas geográficas**
 
 Percorre Data Frame e localizando Coordenadas das Cidades / UF utilizando o módulo geocoder
 
-Ao executar o eriquecimento encontramos um erro e ao verifiar vi que existe uma cidade com o nome 'Importados/Indefinidos' e para resover incluimos a linha 
+Ao executar o enriquecimento encontramos um erro e ao verificar vi que existe uma cidade com o nome 'Importados/Indefinidos' e para resolver incluímos a linha 
 - if (ocorrencia['cidade'] != 'Importados/Indefinidos'):
 """
 
@@ -117,7 +116,7 @@ Após todo o processo temos nosso dataset enriquecido com as coordenadas geográ
 
 dfEnriquecido
 
-"""**Gerar Arquivo CSV para proximo artigo**"""
+"""**Gerar Arquivo CSV para próximo artigo**"""
 
 dfEnriquecido.to_csv('datasetCodiv19Enriquecido.csv', index=False,sep=';')
 

@@ -51,7 +51,7 @@ Temos que iniciar uma variável de ambiente com a chave da API do google para qu
 Caso não saiba como gerar esta chave leia o artigo: https://www.linkedin.com/pulse/gerando-chave-de-acesso-do-google-alexandre-tavares
 """
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDZkOeeS2VXhoe09ybTIHTKKwuAHTd9b6k"
+os.environ["GOOGLE_API_KEY"] = "INSERIR GOOGLE KEY"
 
 """**Importa Biblioteca de geolocalização do google**
 Após gerara váriavel de ambiente com a chave da API devemos importar o módulo geocoder, devemos inportar ela sempre deois de gerar a váriavel pois o módulo utiliza a variavél para se autenticar.
